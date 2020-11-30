@@ -22,6 +22,7 @@ import platform
 import os
 import pickle
 import time
+import random
 
 def control_key():
 	is_osx = platform.system().startswith('Darwin')
@@ -158,9 +159,14 @@ def open_and_comment_in_new_tab(video_url):
 		driver.implicitly_wait(2) # seconds
 		new_comment_placeholder = driver.find_element_by_xpath(new_comment_placeholder_anchor)
 		driver.execute_script("arguments[0].scrollIntoView();", new_comment_placeholder)
-		new_comment_placeholder.send_keys(AN_comment_text)
+		_random_augmentor_ = random.randrange(10000)
+		# augment comment with random string to avoid comment repitition ban from Youtube
+		AN_comment_text_aug = f"{AN_comment_text}_{str(_random_augmentor_)}"
+		new_comment_placeholder.send_keys(AN_comment_text_aug)
 		
 		driver.find_element_by_xpath(comment_button).click()
+		# wait for sometime for youtube to process comment 
+		time.sleep(2)
 
 		print("Inserted comment !")
 
