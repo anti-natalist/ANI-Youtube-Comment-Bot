@@ -1,3 +1,8 @@
+# ignore login-cookie
+login_cookie
+# ignore done_URLs_map
+done_URLs_map
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

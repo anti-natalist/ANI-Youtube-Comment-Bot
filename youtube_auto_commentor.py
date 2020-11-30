@@ -112,6 +112,10 @@ def fetch_video_urls():
 
 		videos = list(filter(lambda v : v.get_attribute('href') not in done_URLs_map.keys(), videos))
 
+		# if couldn't find any more new videos, scroll down
+		if len(videos) == 0:
+			driver.execute_script("window.scrollTo(0, document.documentElement.scrollHeight)")
+
 		for v in videos:
 
 			if v.get_attribute('href') not in done_URLs_map:
@@ -134,29 +138,36 @@ def open_and_comment_in_new_tab(video_url):
 
 	print("switched to the newtab ! ready to comment ")
 
-	delay = 3 # seconds
-	browser = driver
 	try:
-		myElem = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.ID, 'info')))
-		print("Page is ready!")
-	except TimeoutException:
-		print("Loading took too much time!")
 
-	driver.execute_script("window.scrollTo(0, document.documentElement.scrollHeight)")
+		delay = 3 # seconds
+		browser = driver
+		try:
+			myElem = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.ID, 'info')))
+			print("Page is ready!")
+		except TimeoutException:
+			print("Loading took too much time!")
 
-	driver.implicitly_wait(5) # seconds
-	commentBox = driver.find_element_by_xpath(new_comment_box)
-	commentBox.click()
+		driver.execute_script("window.scrollTo(0, document.documentElement.scrollHeight)")
+
+		driver.implicitly_wait(5) # seconds
+		commentBox = driver.find_element_by_xpath(new_comment_box)
+		commentBox.click()
 
 
-	driver.implicitly_wait(2) # seconds
-	new_comment_placeholder = driver.find_element_by_xpath(new_comment_placeholder_anchor)
-	driver.execute_script("arguments[0].scrollIntoView();", new_comment_placeholder)
-	new_comment_placeholder.send_keys(AN_comment_text)
-	
-	driver.find_element_by_xpath(comment_button).click()
+		driver.implicitly_wait(2) # seconds
+		new_comment_placeholder = driver.find_element_by_xpath(new_comment_placeholder_anchor)
+		driver.execute_script("arguments[0].scrollIntoView();", new_comment_placeholder)
+		new_comment_placeholder.send_keys(AN_comment_text)
+		
+		driver.find_element_by_xpath(comment_button).click()
 
-	print("Inserted comment !")
+		print("Inserted comment !")
+
+	except:
+		print("Could not Comment due to some error ! Sorry :( ")
+		pass
+
 
 	# close the tab
 	driver.close()
@@ -175,8 +186,9 @@ def open_and_comment_in_new_tab(video_url):
 
 for url in fetch_video_urls():
 
+	
 	open_and_comment_in_new_tab(url)
-
+	
 
 driver.close()
 
