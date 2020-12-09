@@ -10,6 +10,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC 
 from selenium.webdriver.common.action_chains import ActionChains
 
+from webdriver_manager.chrome import ChromeDriverManager
 
 def load_cookie(driver, path):
 	with open(path, 'rb') as cookiesfile:
@@ -135,6 +136,7 @@ def open_and_comment_in_new_tab(video_url):
 	#switch tab
 	driver.switch_to.window(driver.window_handles[-1])
 
+	print("\n\n===============================\n")
 	print("opened new video in new tab !")
 
 	print("switched to the newtab ! ready to comment ")
