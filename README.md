@@ -33,10 +33,10 @@ Also, possible with software like TubeAssistPro but these are paid unless you us
 	-- Change the video query text in the `search_text`for e.g. "baby delivery birth"
 	-- Change the comment to be added the `string in the filename` for e.g. : "youtube_invite_welcome.txt"
 
-- Run python script to login using command :  `login/save_login_cookies.py`
+- Run python script to login using command :  `python login/save_login_cookies.py`
 - Login using email ID and password
 - Press ENTER / any other key on Terminal
-- Run python script to start commenting :  `youtube_auto_commentor.py`
+- Run python script to start commenting :  `python youtube_auto_commentor.py`
 
 
 # NOTE
