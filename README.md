@@ -25,8 +25,9 @@ Also, possible with software like TubeAssistPro but these are paid unless you us
 # Instructions
 
 - Download https://github.com/anti-natalist/ANI-Youtube-Comment-Bot/archive/main.zip
-- Open Terminal / Command Line (Preferred Ubuntu / MacOS terminal or Git Bash on Windows)
-- Change Directory using command :  `cd ..`
+- Extract the ZIP
+- Open Terminal / Command Line into the directory containing the ZIP archive (Preferred Ubuntu / MacOS terminal or Git Bash on Windows)
+- Change Directory to enter the folder using command :  `cd ANI-Youtube-Comment-Bot-main`
 - Run command : `pip3 install -r requirements.txt`
 - Change the following in the youtube_auto_commentor.py script :
 	-- Change the video query text in the `search_text`for e.g. "baby delivery birth"
